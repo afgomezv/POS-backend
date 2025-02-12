@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { CategoriesModule } from './categories/categories.module';
 import { typeOrmConfig } from './config/typeorm.config';
 import { ProductsModule } from './products/products.module';
+import { SalesModule } from './sales/sales.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { ProductsModule } from './products/products.module';
     }),
     CategoriesModule,
     ProductsModule,
+    SalesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

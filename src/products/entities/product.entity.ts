@@ -21,7 +21,7 @@ export class Product {
   price: number;
 
   @Column({ type: 'int' })
-  quantity: number;
+  stock: number;
 
   @ManyToOne(() => Category)
   category: Category;

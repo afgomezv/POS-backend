@@ -13,7 +13,7 @@ export class CreateProductDto {
   @IsNotEmpty({ message: 'La cantidad es obligatoria' })
   @IsNumber({ maxDecimalPlaces: 0 }, { message: 'La cantidad no es válida' })
   @Min(0, { message: 'La cantidad no puede ser negativa' })
-  quantity: number;
+  stock: number;
 
   @IsNotEmpty({ message: 'La categoría es obligatoria' })
   @IsInt({ message: 'La categoría no es un número' })
