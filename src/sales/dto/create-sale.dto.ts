@@ -5,6 +5,7 @@ import {
   IsInt,
   IsNotEmpty,
   IsNumber,
+  IsOptional,
   ValidateNested,
 } from 'class-validator';
 
@@ -26,6 +27,9 @@ export class CreateSaleDto {
   @IsNotEmpty({ message: 'El total es obligatorio' })
   @IsNumber({}, { message: 'La cantidad no es válida' })
   total: number;
+
+  @IsOptional()
+  coupon: string;
 
   @IsArray()
   @ArrayNotEmpty({ message: 'El contenido es obligatorio' })

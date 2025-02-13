@@ -7,6 +7,7 @@ import { CategoriesModule } from './categories/categories.module';
 import { typeOrmConfig } from './config/typeorm.config';
 import { ProductsModule } from './products/products.module';
 import { SalesModule } from './sales/sales.module';
+import { CouponsModule } from './coupons/coupons.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { SalesModule } from './sales/sales.module';
     CategoriesModule,
     ProductsModule,
     SalesModule,
+    CouponsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

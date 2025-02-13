@@ -10,6 +10,7 @@ import { CreateSaleDto } from './dto/create-sale.dto';
 import { UpdateSaleDto } from './dto/update-sale.dto';
 import { Content, Sale } from './entities/sale.entity';
 import { Product } from 'src/products/entities/product.entity';
+import { CouponsService } from 'src/coupons/coupons.service';
 
 @Injectable()
 export class SalesService {
@@ -22,16 +23,31 @@ export class SalesService {
 
     @InjectRepository(Product)
     private readonly productRepository: Repository<Product>,
+
+    private readonly couponService: CouponsService,
   ) {}
 
   async create(createSaleDto: CreateSaleDto) {
     await this.productRepository.manager.transaction(
       async (saleEntityManager) => {
         const sale = new Sale();
-        sale.total = createSaleDto.contents.reduce(
+
+        const total = createSaleDto.contents.reduce(
           (total, item) => total + item.quantity * item.price,
           0,
         );
+        sale.total = total;
+
+        if (createSaleDto.coupon) {
+          const coupon = await this.couponService.applyCoupon(
+            createSaleDto.coupon,
+          );
+
+          const disccount = (coupon.percentage / 100) * total;
+          sale.discount = disccount;
+          sale.coupon = coupon.name;
+          sale.total -= disccount;
+        }
 
         for (const contents of createSaleDto.contents) {
           const product = await saleEntityManager.findOneBy(Product, {
