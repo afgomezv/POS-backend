@@ -11,7 +11,7 @@ import {
 import { SalesService } from './sales.service';
 import { CreateSaleDto } from './dto/create-sale.dto';
 import { UpdateSaleDto } from './dto/update-sale.dto';
-import { IdValidationPipe } from 'src/common/pipes/id-validation/id-validation.pipe';
+import { IdValidationPipe } from '../common/pipes/id-validation/id-validation.pipe';
 
 @Controller('sales')
 export class SalesController {

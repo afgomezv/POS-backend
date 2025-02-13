@@ -11,9 +11,8 @@ import {
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
-import { log } from 'console';
 import { GetProductQueryDto } from './dto/get-product.dto';
-import { IdValidationPipe } from 'src/common/pipes/id-validation/id-validation.pipe';
+import { IdValidationPipe } from '../common/pipes/id-validation/id-validation.pipe';
 
 @Controller('products')
 export class ProductsController {

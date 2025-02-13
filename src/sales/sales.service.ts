@@ -7,10 +7,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { endOfDay, isValid, parseISO, startOfDay } from 'date-fns';
 import { Between, FindManyOptions, Repository } from 'typeorm';
 import { CreateSaleDto } from './dto/create-sale.dto';
-import { UpdateSaleDto } from './dto/update-sale.dto';
 import { Content, Sale } from './entities/sale.entity';
-import { Product } from 'src/products/entities/product.entity';
-import { CouponsService } from 'src/coupons/coupons.service';
+import { Product } from '../products/entities/product.entity';
+import { CouponsService } from '../coupons/coupons.service';
 
 @Injectable()
 export class SalesService {
