@@ -254,7 +254,7 @@ export const products = [
   {
     name: 'Batería Aluminium 7200mah',
     image: '37.jpg',
-    price: 12700,
+    price: 127000,
     stock: 8,
     categoryId: 6,
   },

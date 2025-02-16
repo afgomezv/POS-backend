@@ -4,6 +4,8 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
 
+const port = process.env.PORT || 3000;
+
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
@@ -16,6 +18,13 @@ async function bootstrap() {
     }),
   );
   app.useStaticAssets(join(__dirname, '../public'));
-  await app.listen(3000);
+
+  app.enableCors({
+    origin: `${process.env.FRONTEND_URL}`,
+    methods: 'GET,POST,PATCH,DELETE',
+    allowedHeaders: 'Content-Type, Authorization',
+  });
+
+  await app.listen(port);
 }
 bootstrap();

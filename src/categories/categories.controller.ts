@@ -6,11 +6,13 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { CategoriesService } from './categories.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { IdValidationPipe } from '../common/pipes/id-validation/id-validation.pipe';
+import { products } from 'src/seeder/data/products';
 
 @Controller('categories')
 export class CategoriesController {
@@ -27,8 +29,11 @@ export class CategoriesController {
   }
 
   @Get(':id')
-  findOne(@Param('id', IdValidationPipe) id: string) {
-    return this.categoriesService.findOne(+id);
+  findOne(
+    @Param('id', IdValidationPipe) id: string,
+    @Query('products') products?: string,
+  ) {
+    return this.categoriesService.findOne(+id, products);
   }
 
   @Patch(':id')
