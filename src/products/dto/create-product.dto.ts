@@ -5,6 +5,9 @@ export class CreateProductDto {
   @IsString({ message: 'El nombre del producto debe ser un texto' })
   name: string;
 
+  @IsNotEmpty({ message: 'la imagen del producto es obligatorio' })
+  image: string;
+
   @IsNotEmpty({ message: 'El precio es obligatorio' })
   @IsNumber({ maxDecimalPlaces: 2 }, { message: 'El precio no es válido' })
   @Min(0, { message: 'El precio no puede ser negativo' })
